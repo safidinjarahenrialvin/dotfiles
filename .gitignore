@@ -1,0 +1,16 @@
+# Caches générés automatiquement
+.cache/
+.cache/wallpaper-thumbs/
+
+# Ne jamais tracker tout un dossier .config par accident
+# (on ajoutera fichier par fichier ou sous-dossier par sous-dossier explicitement)
+
+# Fichiers sensibles / secrets potentiels
+*.token
+*_history
+.netrc
+.ssh/
+
+# Fichiers temporaires / verrous
+*.swp
+*.lock
