@@ -1,0 +1,130 @@
+/* ===================================================================
+   PALETTE DE COULEURS
+   =================================================================== */
+@define-color highlight rgba(117, 241, 250, 0.8);
+@define-color dark-9 rgba(24, 24, 27, 0.8);
+@define-color dark-8 rgba(39, 39, 42, 1);
+@define-color dark-7 rgba(63, 63, 70, 1);
+@define-color dark-6 rgba(82, 82, 91, 1);
+@define-color dark-5 rgba(113, 113, 122, 1);
+
+/* ===================================================================
+   BASE : police et taille de texte globales
+   =================================================================== */
+* {
+    font-family: JetBrainsMono Nerd Font Propo;
+    font-size: 15px;
+}
+
+/* Fond général de la barre */
+window#waybar {
+    background-color: @dark-9;
+    color: white;
+}
+
+/* ===================================================================
+   BLOC COMMUN NORMALISE
+   =================================================================== */
+#workspaces button,
+#cpu,
+#memory,
+#temperature,
+#submap,
+#volume,
+#brightness,
+#battery,
+#bluetooth,
+#network,
+#custom-notification,
+#custom-arch,
+#clock {
+    border-radius: 8px;
+    padding: 5px 8px;
+    background: transparent;
+    margin: 5px 10px 5px 0px;   /* haut droite bas gauche : 0 à gauche par défaut */
+    color: white;
+}
+
+/* Workspaces = premier élément à gauche : besoin d'une marge gauche
+   dédiée pour ne pas coller au bord de l'écran. */
+#workspaces {
+    margin-left: 10px;
+}
+
+/* ===================================================================
+   ÉTATS ACTIF / SURVOL — coloration identique partout
+   =================================================================== */
+#workspaces button.active,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#submap:hover,
+#volume:hover,
+#brightness:hover,
+#battery:hover,
+#bluetooth:hover,
+#custom-arch:hover,
+#network:hover,
+#clock:hover,
+#custom-notification:hover {
+    background: @highlight;
+    color: black;
+    font-weight: 700;
+}
+
+
+/* États spéciaux : submap actif et workspace marqué "urgent" */
+#submap,
+#workspaces button.urgent {
+    background: rgba(227, 81, 73, 1);
+    color: black;
+}
+
+/* Température critique (seuil dépassé) */
+#temperature.critical {
+    background: rgba(227, 81, 73, 1);
+    color: black;
+}
+
+/* ===================================================================
+   GROUPE MÉDIA 
+   =================================================================== */
+#media {
+    color: #42ff9f;
+    margin: 7px 0px 7px 10px;
+}
+
+#custom-media-animation {
+    font-size: 13px;
+    margin-right: 10px;
+}
+
+#custom-media-now-playing {
+    margin-right: 10px;
+}
+
+#custom-media-time {
+    color: @dark-5;
+    font-size: 14px;
+}
+
+/*
+ Logo arch 
+ */
+
+#custom-arch {
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+/* ===================================================================
+   INFOBULLES (tooltips)
+   =================================================================== */
+tooltip {
+    background: @dark-9;
+    border-radius: 5px;
+}
+
+tooltip label {
+    color: white;
+}
