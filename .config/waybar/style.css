@@ -45,11 +45,15 @@ window#waybar {
     color: white;
 }
 
-/* Workspaces = premier élément à gauche : besoin d'une marge gauche
-   dédiée pour ne pas coller au bord de l'écran. */
-#workspaces {
+/*
+ Logo arch 
+ */
+
+#custom-arch {
+    font-size: 18px;
     margin-left: 10px;
 }
+
 
 /* ===================================================================
    ÉTATS ACTIF / SURVOL — coloration identique partout
@@ -91,7 +95,7 @@ window#waybar {
    =================================================================== */
 #media {
     color: #42ff9f;
-    margin: 7px 0px 7px 10px;
+    margin: 7px 10px 7px 10px;
 }
 
 #custom-media-animation {
@@ -108,14 +112,7 @@ window#waybar {
     font-size: 14px;
 }
 
-/*
- Logo arch 
- */
 
-#custom-arch {
-    font-size: 18px;
-    margin-left: 10px;
-}
 
 /* ===================================================================
    INFOBULLES (tooltips)
