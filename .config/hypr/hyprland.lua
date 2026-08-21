@@ -42,7 +42,6 @@ local note = "mousepad"
 local v_editeur = "code"
 local colorScan = "hyprpicker -a -n"
 
-
 -------------------
 ---- AUTOSTART ----
 -------------------
@@ -70,6 +69,7 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("QT_QPA_PLATFORMTHEME", "hyprqt6engine")
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -97,7 +97,7 @@ hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 hl.config({
 	general = {
 		gaps_in = 5,
-		gaps_out = 10,
+		gaps_out = 5,
 
 		border_size = 2,
 
@@ -107,7 +107,7 @@ hl.config({
 		},
 
 		-- Set to true to enable resizing windows by clicking and dragging on borders and gaps
-		resize_on_border = false,
+		resize_on_border = true,
 
 		-- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
 		allow_tearing = false,
@@ -226,7 +226,6 @@ hl.config({
 		force_default_wallpaper = 0, -- Set to 0 or 1 to disable the anime mascot wallpapers
 		disable_hyprland_logo = true, -- If true disables the random hyprland logo / anime girl background. :(
 		disable_splash_rendering = true, -- Désactive le texte de citation aléatoire affiché en bas
-
 	},
 })
 
@@ -254,8 +253,24 @@ hl.config({
 
 hl.gesture({
 	fingers = 3,
-	direction = "horizontal",
+	direction = "vertical",
 	action = "workspace",
+})
+
+hl.gesture({
+	fingers = 3,
+	direction = "left",
+	action = function()
+		hl.dispatch(hl.dsp.layout("focus r"))
+	end,
+})
+
+hl.gesture({
+	fingers = 3,
+	direction = "right",
+	action = function()
+		hl.dispatch(hl.dsp.layout("focus l"))
+	end,
 })
 
 -- Example per-device config
@@ -274,7 +289,7 @@ local secondMod = "SUPER + SHIFT"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 
--- Raccourci application 
+-- Raccourci application
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(music))
@@ -286,8 +301,7 @@ hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(note))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(v_editeur))
 hl.bind(secondMod .. " + C", hl.dsp.exec_cmd(colorScan))
 
-
--- raccourci navigation systeme 
+-- raccourci navigation systeme
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized", layout_aware = true }))
 hl.bind(secondMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", layout_aware = true }))
@@ -307,11 +321,9 @@ hl.bind(mainMod .. " + S", hl.dsp.layout("colresize -conf"))
 hl.bind(mainMod .. " + Z", hl.dsp.layout("consume_or_expel prev"))
 hl.bind(mainMod .. " + X", hl.dsp.layout("consume_or_expel next"))
 
-
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
-
 
 -- Screenshot une fenêtre
 hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
@@ -319,8 +331,6 @@ hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output"))
 -- Screenshot une région (sélection à la souris)
 hl.bind(secondMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
-
-
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
