@@ -2,7 +2,7 @@
     "layer": "top",
     "modules-left": ["custom/arch", "hyprland/workspaces", "cpu", "memory", "temperature"],
     "modules-center": ["clock"],
-    "modules-right": ["group/media", "hyprland/submap", "group/volume", "group/brightness", "battery", "network", "bluetooth", "custom/notification"],
+    "modules-right": ["group/media", "hyprland/submap", "group/volume", "group/brightness", "network", "battery", "bluetooth", "custom/notification"],
     "hyprland/window": {
         "max-length": 50
     },

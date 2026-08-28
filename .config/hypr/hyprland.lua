@@ -31,7 +31,7 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
-local terminal = "ghostty"
+local terminal = "kitty"
 local fileManager = "nautilus"
 local launcher = "rofi -show drun -show-icons"
 local runner = "rofi -show run"
@@ -41,6 +41,7 @@ local obsidian = "flatpak run md.obsidian.Obsidian"
 local note = "mousepad"
 local v_editeur = "code"
 local colorScan = "hyprpicker -a -n"
+local espace_search = "nwg-drawer -open"
 
 -------------------
 ---- AUTOSTART ----
@@ -56,6 +57,8 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("playerctld daemon")
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
+	hl.exec_cmd("nwg-drawer -wm hyprland -r -c 6")
+
 end)
 
 -------------------------------
@@ -292,6 +295,7 @@ hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(obsidian))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(note))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(v_editeur))
 hl.bind(secondMod .. " + C", hl.dsp.exec_cmd(colorScan))
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(espace_search))
 
 -- raccourci navigation systeme
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
