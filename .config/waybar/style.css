@@ -6,7 +6,7 @@
 @define-color dark-8 rgba(39, 39, 42, 1);
 @define-color dark-7 rgba(63, 63, 70, 1);
 @define-color dark-6 rgba(82, 82, 91, 1);
-@define-color dark-5 rgba(113, 113, 122, 1);
+@define-color dark-5 rgba(113, 113, 122, 0.3);
 
 /* ===================================================================
    BASE : police et taille de texte globales
@@ -58,7 +58,16 @@ window#waybar {
 /* ===================================================================
    ÉTATS ACTIF / SURVOL — coloration identique partout
    =================================================================== */
-#workspaces button.active,
+#workspaces button.active {
+    background: @highlight;
+    color: black;
+    font-weight: 700;
+}
+
+#custom-notification:hover,
+#clock:hover,
+#bluetooth:hover,
+#custom-arch:hover,
 #cpu:hover,
 #memory:hover,
 #temperature:hover,
@@ -67,11 +76,9 @@ window#waybar {
 #brightness:hover,
 #battery:hover,
 #network:hover {
-    background: @highlight;
-    color: black;
-    font-weight: 700;
+	font-weight: 700;
+	background: @dark-5; 
 }
-
 
 /* États spéciaux : submap actif et workspace marqué "urgent" */
 #submap,
