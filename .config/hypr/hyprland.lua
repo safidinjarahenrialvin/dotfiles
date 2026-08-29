@@ -19,10 +19,23 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+
+-- Fallback pour tout écran
+hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
+
+-- ecran pc portable principal
 hl.monitor({
-	output = "",
-	mode = "preferred",
-	position = "auto",
+	output = "eDP-1",
+	mode = "1920x1080@60",
+	position = "0x0",
+	scale = 1.0,
+})
+
+-- Ecran maison
+hl.monitor({
+	output = "HDMI-A-1",
+	mode = "1920x1080@60",
+	position = "auto-left",
 	scale = 1.0,
 })
 
@@ -98,7 +111,7 @@ hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 hl.config({
 	general = {
 		gaps_in = 5,
-		gaps_out = 5,
+		gaps_out = 0,
 
 		border_size = 2,
 
@@ -175,20 +188,42 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" 
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
 -- uncomment all if you wish to use that.
--- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
+hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
+hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
+
+-- Ecran de la maison 
+hl.workspace_rule({
+	workspace = "3",
+	monitor = "HDMI-A-1",
+	default = true,
+})
+
+hl.window_rule({
+	name = "float-nautilus",
+	match = { class = "org.gnome.Nautilus" },
+	float = true,
+})
+
 -- hl.window_rule({
---     name  = "no-gaps-wtv1",
---     match = { float = false, workspace = "w[tv1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
+--    name  = "no-gaps-wtv1",
+--    match = { float = false, workspace = "w[tv1]" },
+--    border_size = 0,
+--    rounding    = 0,
+--})
+--hl.window_rule({
+--    name  = "no-gaps-f1",
+--    match = { float = false, workspace = "f[1]" },
+--    border_size = 0,
+--    rounding    = 0,
+--})
+
 -- hl.window_rule({
---     name  = "no-gaps-f1",
---     match = { float = false, workspace = "f[1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
+--	name = "float-workspace-5",
+--	match = {workspace = "5"},
+--	float = true,
+--})
+
+
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
@@ -303,12 +338,8 @@ hl.bind(
 	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
 )
 
+hl.bind(mainMod .. " + tab", hl.dsp.window.float({ action = "toggle" }))
 
-hl.bind(mainMod .. " + tab", function()
-	hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
-	hl.dispatch(hl.dsp.window.center())
-	hl.dispatch(hl.dsp.window.resize({ x = 1152, y = 648 }))
-end)
 hl.bind(mainMod .. " + D", hl.dsp.layout("focus r"))
 hl.bind(mainMod .. " + A", hl.dsp.layout("focus l"))
 hl.bind(mainMod .. " + W", hl.dsp.layout("colresize +conf"))
