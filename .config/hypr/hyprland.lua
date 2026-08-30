@@ -190,7 +190,7 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" 
 -- "Smart gaps" / "No gaps when only"
 -- uncomment all if you wish to use that.
 -- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
+hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
 
 -- Ecran de la maison 
 hl.workspace_rule({
@@ -199,6 +199,7 @@ hl.workspace_rule({
 	default = true,
 })
 
+-- mettre nautilus en flottant
 hl.window_rule({
 	name = "float-nautilus",
 	match = { class = "org.gnome.Nautilus" },
@@ -211,12 +212,13 @@ hl.window_rule({
 --    border_size = 0,
 --    rounding    = 0,
 --})
---hl.window_rule({
---    name  = "no-gaps-f1",
---    match = { float = false, workspace = "f[1]" },
---    border_size = 0,
---    rounding    = 0,
---})
+
+hl.window_rule({
+    name  = "no-gaps-f1",
+    match = { float = false, workspace = "f[1]" },
+    border_size = 0,
+    rounding    = 0,
+})
 
 -- hl.window_rule({
 --	name = "float-workspace-5",
