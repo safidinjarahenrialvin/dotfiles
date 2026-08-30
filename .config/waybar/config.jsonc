@@ -163,7 +163,7 @@
     "custom/arch": {
 	"format": "󰣇",       // icône Arch (glyphe Nerd Font, Font Logos)
     	"tooltip": false,
-	"on-click": "exec ghostty"   // optionnel : ouvre ton launcher au clic
+	"on-click": "exec rofi -show drun -show-icons"   // optionnel : ouvre ton launcher au clic
     }
 
 }

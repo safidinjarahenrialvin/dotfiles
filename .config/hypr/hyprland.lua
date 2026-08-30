@@ -54,6 +54,7 @@ local obsidian = "flatpak run md.obsidian.Obsidian"
 local note = "mousepad"
 local v_editeur = "code"
 local colorScan = "hyprpicker -a -n"
+local clipboard = "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
 -------------------
 ---- AUTOSTART ----
@@ -69,7 +70,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("playerctld daemon")
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
-
+	hl.exec_cmd("wl-paste --watch cliphist store")
 end)
 
 -------------------------------
@@ -111,7 +112,7 @@ hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 hl.config({
 	general = {
 		gaps_in = 5,
-		gaps_out = 0,
+		gaps_out = 5,
 
 		border_size = 2,
 
@@ -188,12 +189,12 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" 
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
 -- uncomment all if you wish to use that.
-hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
-hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
+-- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
+-- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
 
 -- Ecran de la maison 
 hl.workspace_rule({
-	workspace = "3",
+	workspace = "5",
 	monitor = "HDMI-A-1",
 	default = true,
 })
@@ -328,6 +329,8 @@ hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(obsidian))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(note))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(v_editeur))
 hl.bind(secondMod .. " + C", hl.dsp.exec_cmd(colorScan))
+hl.bind(secondMod .. " + V", hl.dsp.exec_cmd(clipboard))
+
 
 -- raccourci navigation systeme
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
